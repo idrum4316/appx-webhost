@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+  </head>
+  <body>
+    <div id="page" style="display:none;" class="appx-show-on-load">
+      <div id="wrapper">
+          <div id="main">
+              <div id="appx-con-nav" class="appx-container">
+                  <nav id="appx-main-nav"></nav>
+                  <div id="appx-contact" class="appx-show-on-load">
+                      <a id="appx-logo" href="javascript:window.open('http://www.appx.com', '_blank')"></a>
+                      <span class="appx_status_data" id="appx_status_zoom">
+                          <input id="appx_zoom_out" type="button" value="-" title="smaller">
+                          <input id="appx_zoom_in" type="button" value="+" title="larger">
+                          <input id="appx_zoom_dflt" type="button" value="D" title="Default">
+                          <input id="appx_zoom_max" type="button" value="M" title="Maximum">
+                          <input id="appx_zoom_auto" type="button" value="A" title="Auto toggle">
+                          <input id="appx_zoom_full" type="button" value="F" title="Full Screen">
+                          <input id="appx_clear_cache" type="button" onclick="appx_session.clearCache();" value="clear">
+                          <input id="appx_show_pref" type="button" onclick="appx_session.showPreferences(true);" value="prefs">
+                      </span> &nbsp; &nbsp;
+                  </div>
+              </div>
+              <div id="appx-con-toolbar" class="appx-container">
+                  <div id="appx-toolbar"><div id="default-toolbar"></div><div id="toolbar" class="appx-toolbar"></div></div>
+              </div>
+              <div id="appx-con-status-msg" class="appx-container">
+                  <div id="appx-status-msg">Loading....</div>
+              </div>
+              <div id="appx-con-main-con" class="appx-container">
+                  <div id="appx_main_container">
+                      <div id="usr-content-img1"></div>
+                      <div id="usr-content-img2"></div>
+                      &nbsp;
+                      <div id="appx_login_modul" class="login-panel">
+                          <h4>
+                              <span id="appx-login-text"></span>&nbsp;
+                              <img id="appxLoginSSL" src="images/appx_login_ssl.png" />
+                          </h4>
+                          <div id="appxLoginFormUser"><input type="text" id="appx_username" autocapitalize="none" placeholder="Login id" value="" /></div>
+                          <div id="appxLoginFormPswd"><input type="password" id="appx_password" placeholder="Password" value="" /></div>
+                          <div id="appxLoginFormHost"><input type="text" id="appx_server" placeholder="Server" value="" /></div>
+                          <div id="appxLoginFormPort"><input type="text" id="appx_port" placeholder="Port" value="" /></div>
+                          <div id="appxLoginFormRows"><input type="text" id="appx_rows" placeholder="Rows" value="" /></div>
+                          <div id="appxLoginFormCols"><input type="text" id="appx_cols" placeholder="Columns" value="" /></div>
+                          <br>
+                          <div id="login_buttons">
+                              <input type="button" class="left login" id="btn_appx_login" value="Login" />
+                              <input type="button" class="right" id="btn_appx_reconnect" value="Sessions" />
+                          </div>
+                          <div id="style-clear"></div>
+                      </div>
+                  </div>
+                  <div id="appx_popup_nav">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div id="appx-softkeys-container"></div>
+      <div id="appx-defaulttools-container"></div>
+      <footer>
+          <div id="status_bar" style="position:absolute;padding:2px 0px;display:none" class="appx-show-on-load">
+              &nbsp;<img id="appxFooterSSL" src="images/appx_footer_ssl.png" style="display: none;"> &nbsp; &nbsp;
+	      &nbsp;<span class="appx_status_data" id="appx_status_date" style="width: auto"></span> &nbsp; &nbsp;
+              <div id="appx_connectivity" style="float:right; width: auto;">
+                  <span id="appx_status_pid_text" class="appx_status_pid">PID:         </span>
+                  <span id="appx_status_pid" class="appx_status_data appx_status_pid">&nbsp;</span> &nbsp; &nbsp;
+                  <span id="appx_status_db_text" class="appx_status_db">Db:          </span>
+                  <span id="appx_status_db" class="appx_status_data appx_status_db">&nbsp;</span> &nbsp;&nbsp;
+                  <span id="appx_status_ap_text" class="appx_status_ap">Appl:        </span>
+                  <span id="appx_status_ap" class="appx_status_data appx_status_ap">&nbsp;</span>
+                  <span id="appx_status_ver" class="appx_status_data appx_status_ap">&nbsp;</span> &nbsp;&nbsp;
+                  <span id="appx_status_user_text" class="appx_status_user">User:        </span>
+                  <span id="appx_status_user" class="appx_status_data appx_status_user">&nbsp;</span> &nbsp; &nbsp;
+                  <span id="appx_status_mode_text" class="appx_status_mode">Mode:        </span>
+                  <span id="appx_status_mode" class="appx_status_data appx_status_mode">&nbsp;</span> &nbsp; &nbsp;
+                  <span id="appx_status_stat_text" class="appx_status_stat">Status:      </span>
+                  <span id="appx_status_stat" class="appx_status_data appx_status_stat">&nbsp;</span> &nbsp; &nbsp;
+                  <span id="appx_access_text" class="appx_access">Connect:     </span>
+                  <span id="appx_access" class="appx_access">Remote</span> | <span id="localos_access" class="appx_access">Local</span> &nbsp; &nbsp;
+              </div>
+          </div>
+          <textarea id="log"></textarea>
+      </footer>
+      <script src="js/i18n/appx.locale-en.js" type="text/javascript"></script>
+      <script src="js/appx-client-loadScripts.min.js" type="text/javascript"></script>
+    </div>
+  </body>
+</html>
