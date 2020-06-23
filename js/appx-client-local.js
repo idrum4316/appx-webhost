@@ -9,7 +9,7 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-local.js,v 1.38 2018/03/06 17:00:43 jnelson Exp $";
+// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-local.js,v 1.39 2019/02/07 15:25:23 pete Exp $";
 
 /*********************************************************************
  ** showLocalMissing() displays a popup to install the local connector
@@ -189,6 +189,15 @@ function LOCALOS() {
                             localos_session = new LOCALOS();
                             localos_session.isUpdating = false;
                         }, 500);
+                        break;
+                    case "LOCALOS-AUTH":
+			if( rtnobj.data.authStatus === "allow" ) {
+			    localStorage.authToken = rtnobj.data.authToken;
+			    $("#appx-status-msg").html("");
+			}
+			else {
+			    $("#appx-status-msg").html("Access Denied");
+			}
                         break;
                     case "LOCALOS-DND":
                         appx_session.dndData = rtnobj.data;

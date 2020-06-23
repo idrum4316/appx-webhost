@@ -9,7 +9,7 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-remote.js,v 1.112 2018/11/08 16:48:49 pete Exp $";
+// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-remote.js,v 1.115 2019/12/18 16:20:38 m.karimi Exp $";
 var cMsgCount = 0;
 
 /*********************************************************************
@@ -80,8 +80,8 @@ function APPX(server, port, mongoPort, path, ssl, fontbase, minified) {
     this.processhelpoption = null;
     this.runOnUnlock = [];
     this.scan = false;
-    this.screenrows = 28 + 3;
-    this.screencols = 110;
+    this.screenrows = 35;
+    this.screencols = 144;
     this.container_top = 80;
     this.language = {};
     this.image_cache = {
@@ -281,8 +281,11 @@ function APPX(server, port, mongoPort, path, ssl, fontbase, minified) {
     //    #define TMNET_FEATURE2_SEND_ALL_ITEMS         0x00000020
     //    #define TMNET_FEATURE2_HTML5_VERSION_1        0x00000040
     //    #define TMNET_FEATURE2_PUSH_AND_OPEN          0x00000080
+	//	  #define TMNET_FEATURE2_UNICODE_ENGINE         0x00000100
+	//	  #define TMNET_FEATURE2_CUSTOMIZABLE_TABLE_HEADERS 0x00000200
+	//	  #define TMNET_FEATURE2_CUSTOMIZABLE_TABLE_ROWS    0x00000400
 
-    var exmask = 0x000000fb;
+    var exmask = 0x000006fb;
 
     exmask0 = (exmask & 0xFF000000) >> 24;
     exmask1 = (exmask & 0x00FF0000) >> 16;

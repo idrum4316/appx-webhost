@@ -7,10 +7,10 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-utilities.js,v 1.62 2018/10/12 16:01:53 pete Exp $";
+// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-utilities.js,v 1.65 2019/02/21 20:13:19 pete Exp $";
 
-var appxPublicClientVersionStr = "6.0.0.19011401";
-var appxPublicClientVersionNum = 60000.19011401;
+var appxPublicClientVersionStr = "6.0.0.20040817";
+var appxPublicClientVersionNum = 60000.20040817;
 
 // get's initialization assets from the APPX proxy server to prepare for running an APPX client session
 // fired immediately after appx_session object is created and websocket connection is made to APPX proxy server
@@ -19,7 +19,8 @@ function initialize_localos_session() {
         cmd: 'localosinit',
         args: [0, 0],
         handler: 'localos_init_handler',
-        data: { languageId: appx_session.language.id }
+        data: { languageId: appx_session.language.id },
+	authToken: localStorage.authToken
     };
     localos_session.ws.send(JSON.stringify(ms));
 }
@@ -49,7 +50,8 @@ function initialize_localos_directories(mCachePath) {
         cmd: 'localoscreatedir',
         args: [mCachePath, 0],
         handler: 'localos_init_handler',
-        data: null
+        data: null,
+	authToken: localStorage.authToken
     };
     localos_session.ws.send(JSON.stringify(ms));
 }
@@ -120,11 +122,37 @@ function localos_enviro_handler(data) {
     appx_session.setProp("clientPublicVersionStr", appxPublicClientVersionStr);
     appx_session.setProp("clientPublicVersionNum", appxPublicClientVersionNum);
 
+    if (data["localConnectorVersionStr"]) {
+        appx_session.setProp("localConnectorVersionStr", data["localConnectorVersionStr"]);
+    }
+    else {
+        appx_session.setProp("localConnectorVersionStr", "Unknown");
+    }
+    
+    if (data["localConnectorVersionNum"]) {
+        appx_session.setProp("localConnectorVersionNum", data["localConnectorVersionNum"]);
+    }
+    else {
+        appx_session.setProp("localConnectorVersionNum", 99999.999);
+    }
+
     appx_session.local_environment = data;
 
-    if( ! appx_session.local_environment.authTokenValid ) {
+    if( appx_session.getProp("localConnectorVersionNum") >= 60000.19022101 && ! appx_session.local_environment.authTokenValid ) {
 	var accessCode = Math.floor(100000 + Math.random() * 900000); // 6 digit random number never starting with zero
-	localos_session.ws.send(JSON.stringify({cmd:'auth',args:[],handler:'',data:{appName:'FIMMAS', accessCode: accessCode}}));
+	localos_session.ws.send(JSON.stringify(
+				    {
+				        cmd: 'auth',
+					args: [],
+					handler: '',
+					data: {
+					    appName: $('meta[name=appx-app-name]').attr("content"), 
+					    accessCode: accessCode
+					}
+				    }
+				));
+
+	$("#appx-status-msg").html("<span class='status-msg-error'>&nbsp;" + "Local Connector Access Code: " + accessCode + "&nbsp;</span>");
     }
 
     try {
@@ -133,19 +161,6 @@ function localos_enviro_handler(data) {
             appx_session.userhome = data[(appx_session.globals.os.indexOf("Win") > -1) ? 'USERPROFILE' : 'HOME'];
             appx_session.setProp("userHome", appx_session.userhome);
 
-            if (data["localConnectorVersionStr"]) {
-                appx_session.setProp("localConnectorVersionStr", data["localConnectorVersionStr"]);
-            }
-            else {
-                appx_session.setProp("localConnectorVersionStr", "Unknown");
-            }
-
-            if (data["localConnectorVersionNum"]) {
-                appx_session.setProp("localConnectorVersionNum", data["localConnectorVersionNum"]);
-            }
-            else {
-                appx_session.setProp("localConnectorVersionNum", 99999.999);
-            }
             $("#localos_access").prop('title', appx_session.language.tooltips.localVersion + appx_session.getProp("localConnectorVersionStr")); // <-- does not support HTML tags in tooltip
 
             if (appx_session.getProp("localConnectorVersionNum") < appxServerClientVersionNum) {
@@ -184,7 +199,8 @@ function appxupdatelocalhandler(x) {
             cmd: 'update',
             args: [filecopy],
             handler: 'localos_update_handler',
-            data: null
+            data: null,
+	    authToken: localStorage.authToken
         };
         $("#localos_access").html("Updating").css({
             "color": "#F77",

@@ -1,17 +1,20 @@
 CKEDITOR.editorConfig = function( config ) {
 
-    config.toolbar = 
-	[
-	    { name: 'clipboard', items : [ 'Cut','Copy','Paste','-','Undo','Redo' ] },
-	    { name: 'basicstyles', items : [ 'Bold','Italic' ] },
-	    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock', '-', 'Source' ] },
-	    { name: 'links', items : [ 'Link' ] },
-	    { name: 'insert', items : [ 'Table','HorizontalRule' ] },
-	    '/',
-	    { name: 'styles', items : [ 'Font','FontSize' ] },
-	    { name: 'colors', items : [ 'TextColor','BGColor' ] },
-	    { name: 'tools', items : [ 'Templates', 'WidgetTemplateMenu' ] },
-	    { name: 'document', items: ['Save']}
-	];
+    config.toolbarGroups = [
+        { name: 'document', groups: [ 'document', 'mode', 'doctools' ] },
+        { name: 'clipboard', groups: ['selection', 'clipboard', 'undo' ] },
+        { name: 'editing', groups: [ 'find', 'editing' ] },
+        { name: 'forms', groups: [ 'forms' ] },
+        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+        { name: 'colors', groups: [ 'colors' ] },
+        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+        { name: 'links', groups: [ 'links' ] },
+        { name: 'insert', groups: [ 'insert' ] },
+        { name: 'styles', groups: [ 'styles' ] },
+    ];
 
+    config.removeButtons = 'Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,BidiLtr,BidiRtl,Iframe,Smiley,CreateDiv,ShowBlocks,Anchor,Code';
+    config.disableNativeSpellChecker = false;
+    config.fillEmptyBlocks = false;
+    config.allowedContent = true;
 };
