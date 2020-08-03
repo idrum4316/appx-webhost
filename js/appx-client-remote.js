@@ -9,7 +9,7 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-remote.js,v 1.115 2019/12/18 16:20:38 m.karimi Exp $";
+// what_str =  "@(#)Appx $Header$";
 var cMsgCount = 0;
 
 /*********************************************************************
@@ -283,9 +283,12 @@ function APPX(server, port, mongoPort, path, ssl, fontbase, minified) {
     //    #define TMNET_FEATURE2_PUSH_AND_OPEN          0x00000080
 	//	  #define TMNET_FEATURE2_UNICODE_ENGINE         0x00000100
 	//	  #define TMNET_FEATURE2_CUSTOMIZABLE_TABLE_HEADERS 0x00000200
-	//	  #define TMNET_FEATURE2_CUSTOMIZABLE_TABLE_ROWS    0x00000400
+    //	  #define TMNET_FEATURE2_CUSTOMIZABLE_TABLE_ROWS    0x00000400
+    //    #define TMNET_FEATURE2_UNUSED                 0x00000800;
+    //    #define TMNET_FEATURE2_APPX64_BIT             0X00001000;
+    //    #define TMNET_FEATURE2_LARGE_WORK_FIELD       0x00002000;
 
-    var exmask = 0x000006fb;
+    var exmask = 0x000037fb;
 
     exmask0 = (exmask & 0xFF000000) >> 24;
     exmask1 = (exmask & 0x00FF0000) >> 16;
@@ -624,7 +627,6 @@ function appxProcessStack(data) {
             }
         }
         if (!found) {
-            debugger;
             delete appx_session.gridpropscache[props];
         }
     }

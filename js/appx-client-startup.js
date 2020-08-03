@@ -8,7 +8,7 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-startup.js,v 1.87 2018/09/05 20:03:40 jnelson Exp $";
+// what_str =  "@(#)Appx $Header$";
 
 function urlParam(name) {
     var result = urlParamEx(window.location.href, name);

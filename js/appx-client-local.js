@@ -9,7 +9,7 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-local.js,v 1.39 2019/02/07 15:25:23 pete Exp $";
+// what_str =  "@(#)Appx $Header$";
 
 /*********************************************************************
  ** showLocalMissing() displays a popup to install the local connector

@@ -7,10 +7,10 @@
  **
  *********************************************************************/
 
-// what_str =  "@(#)Appx $Header: /src/cvs/appxHtml5/public/js/appx-client-utilities.js,v 1.65 2019/02/21 20:13:19 pete Exp $";
+// what_str =  "@(#)Appx $Header$";
 
-var appxPublicClientVersionStr = "6.0.0.20040817";
-var appxPublicClientVersionNum = 60000.20040817;
+var appxPublicClientVersionStr = "6.0.0.20072712";
+var appxPublicClientVersionNum = 60000.20072712;
 
 // get's initialization assets from the APPX proxy server to prepare for running an APPX client session
 // fired immediately after appx_session object is created and websocket connection is made to APPX proxy server

@@ -137,11 +137,17 @@ div.blockOverlay {
 
 input[type=checkbox] {
     margin: 0px;
+    cursor: pointer;
+}
+
+input[type=checkbox]:disabled {
+    cursor: inherit;
 }
 
 input[type=checkbox].disabled {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+    cursor: inherit;
 }
 
 input[type=text],
@@ -1142,6 +1148,10 @@ button.button.error {
     color: red;
 }
 
+.jqgrid-disabled-widget {
+    pointer-events: none;
+}
+
 /*END JQGRID CSS*/
 
 .appxtablewidget {
@@ -1920,85 +1930,109 @@ fieldset legend {
 }
 /*END BOX LABEL POSITIONING*/
 
-
-
-
 /* Styling Checkbox Starts. credit to https://appitventures.com/blog/styling-checkbox-css-tips/ */
 .checkbox-label {
-   display               : block;
-   position              : relative;
-   margin                : auto;
-   cursor                : pointer;
-   font-size             : 6px;
-   line-height           : 9px;
-   height                : 9px;
-   width                 : 12px;
-   clear                 : both;
-   left                  : -8px;
-   top                   : 4px;
-}
-.checkbox-label input {
-   position              : absolute;
-   opacity               : 0;
-   cursor                : pointer;
-}
-.checkbox-label .checkbox-custom {   /* this is the box surrounding the checkmark */
-   position              : absolute;
-   top                   : 4px;
-   left                  : 0px;
-   height                : 9.5px;
-   width                 : 9.5px;
-   background-color      : #d0829c;    /* color of unchecked background */
-   border-radius         : 2px;
-   border                : 1px solid #888888;
-}
-.checkbox-label input:checked ~ .checkbox-custom {   /* this is the box surrounding the checked box */
-   background-color      : #e0e0e0;
-   border-radius         : 2px;
-   -webkit-transform     : rotate(0deg) scale(1);
-   -ms-transform         : rotate(0deg) scale(1);
-   transform             : rotate(0deg) scale(1);
-   opacity               : 1;
-   border                : 1px solid #aaaaaa;
-}
-.checkbox-label .checkbox-custom::after {  /* unchecked checkmark */
-   position              : absolute;
-   content               : "";
-   left                  : 12px;
-   top                   : 12px;
-   height                : 0px;
-   width                 : 0px;
-   border-radius         : 5px;
-   border                : solid #f0aB5F;
-   border-width          : 0 3px 3px 0;
-   -webkit-transform     : rotate(0deg) scale(0);
-   -ms-transform         : rotate(0deg) scale(0);
-   transform             : rotate(0deg) scale(0);
-   opacity               : 1;
-}
-.checkbox-label input:checked ~ .checkbox-custom::after {  /* This is the checked checkmark */
-   -webkit-transform       : rotate(45deg) scale(1);
-   -ms-transform           : rotate(45deg) scale(1);
-   transform               : rotate(45deg) scale(1);
-   opacity                 : 1;
-   left                    : 3px;
-   top                     : 0px;
-   width                   : 2px;
-   height                  : 6px;
-   border                  : solid #aaaaaa;    /* This is the color of the checkmark */
-   border-width            : 0 2px 2px 0;
-   background-color        : transparent;
-   border-radius           : 0;
-}
-.checkbox-label input:checked ~ .checkbox-custom::before {
-   left                  : -3px;
-   top                   : -3px;
-   width                 : 24px;
-   height                : 24px;
-   border-radius         : 5px;
-   -webkit-transform     : scale(3);
-   -ms-transform         : scale(3);
-   transform             : scale(3);
-   opacity               : 0;
-   z-index               : 999;
-}
+    display               : block;
+    position              : relative;
+    margin                : auto;
+    /*cursor                : pointer; Bug #4690*/
+    font-size             : 6px;
+    line-height           : 9px;
+    height                : 9px;
+    width                 : 12px;
+    clear                 : both;
+    left                  : -8px;
+    top                   : 4px;
+ }
+ .checkbox-label input {
+    position              : absolute;
+    opacity               : 0;
+    /*cursor                : pointer; Bug #4690*/
+ }
+ .checkbox-label .checkbox-custom {   /* this is the box surrounding the checkmark */
+    position              : absolute;
+    top                   : 4px;
+    left                  : 0px;
+    height                : 9.5px;
+    width                 : 9.5px;
+    background-color      : #ffffff;    /* color of unchecked background */
+    border-radius         : 2px;
+    border                : 1px solid #000000;
+ }
+ .checkbox-label.disabled .checkbox-custom {   /* this is the box surrounding the disabled checkmark */
+    background-color      : #e0e0e0;    /* color of unchecked background */
+    border                : 1px solid #808080;
+ }
+ 
+ 
+ .checkbox-label input:checked ~ .checkbox-custom::before {
+    left                  : -3px;
+    top                   : -3px;
+    width                 : 24px;
+    height                : 24px;
+    border-radius         : 5px;
+    -webkit-transform     : scale(3);
+    -ms-transform         : scale(3);
+    transform             : scale(3);
+    opacity               : 0;
+ }
+ .checkbox-label input:indeterminate ~ .checkbox-custom::before {
+    left                  : -3px;
+    top                   : -3px;
+    width                 : 24px;
+    height                : 24px;
+    border-radius         : 5px;
+    -webkit-transform     : scale(3);
+    -ms-transform         : scale(3);
+    transform             : scale(3);
+    opacity               : 0;
+  }
+  
+  .checkbox-label .checkbox-custom::after {  /* checkbox checkmark */
+    position              : absolute;
+    content               : "";
+    left                  : 12px;
+    top                   : 12px;
+    height                : 0px;
+    width                 : 0px;
+    border-radius         : 5px;
+    border                : solid #000000;
+    color                 : #000000;
+    border-width          : 0 3px 3px 0;
+    -webkit-transform     : rotate(0deg) scale(0);
+    -ms-transform         : rotate(0deg) scale(0);
+    transform             : rotate(0deg) scale(0);
+    opacity               : 1;
+    background-color      : transparent;
+  }
+  .checkbox-label.disabled .checkbox-custom::after {  /* disabled checkmark */
+    border                : solid #808080;
+    color                 : #808080;
+  }
+ 
+ .checkbox-label input:indeterminate  ~ .checkbox-custom::after {  /* This is the indeterminate checkmark */
+    content                 : '?';
+    -webkit-transform       : rotate(0deg) scale(1);
+    -ms-transform           : rotate(0deg) scale(1);
+    transform               : rotate(0deg) scale(1);
+    left                    : 1px;
+    top                     : 0px;
+    font-size               : 12px;
+    font-weight             : bold;
+    vertical-align          : middle;
+    text-align              : center;
+    line-height             : 12px;
+    border                  : none;
+  }
+  .checkbox-label input:checked:not(:indeterminate) ~ .checkbox-custom::after {  /* This is the checked checkmark */
+    -webkit-transform       : rotate(45deg) scale(1);
+    -ms-transform           : rotate(45deg) scale(1);
+    transform               : rotate(45deg) scale(1);
+    left                    : 3px;
+    top                     : 0px;
+    width                   : 2px;
+    height                  : 6px;
+    border-width            : 0 2px 2px 0;
+    border-radius           : 0;
+  }
+/* END STYLING CHECKBOX*/
