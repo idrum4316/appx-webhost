@@ -2036,3 +2036,11 @@ fieldset legend {
     border-radius           : 0;
   }
 /* END STYLING CHECKBOX*/
+
+/*ckeditor*/
+ .cke_fullscreen_button{ 
+    width                   : 20px;
+    height                  : 20px;
+    background              : url('../images/editor.png') no-repeat;
+    cursor                  : pointer;
+ }
