@@ -9,8 +9,8 @@
 
 // what_str =  "@(#)Appx $Header$";
 
-var appxPublicClientVersionStr = "6.0.0.20111701";
-var appxPublicClientVersionNum = 60000.20111701;
+var appxPublicClientVersionStr = "6.0.0.20122901";
+var appxPublicClientVersionNum = 60000.20122901;
 
 // get's initialization assets from the APPX proxy server to prepare for running an APPX client session
 // fired immediately after appx_session object is created and websocket connection is made to APPX proxy server

@@ -50,7 +50,7 @@ var metas = {
 **@param root: string containing the root path
 */
 function createScriptsArray(root) {
-    var version = "6.0.0.20111701";
+    var version = "6.0.0.20122901";
     arrayScripts = [
         { "nameLoc": root + "/js/libraries/jquery-1.12.4.min.js", "type": "js" },
         { "nameLoc": root + "/js/libraries/ckeditor/ckeditor.js", "type": "js" },
